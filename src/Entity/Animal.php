@@ -29,6 +29,10 @@ class Animal
     #[ORM\Column]
     private ?bool $dangerous = null;
 
+    #[ORM\ManyToOne(inversedBy: 'animals')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Family $family = null;
+
 
 
     public function getId(): ?int
@@ -92,6 +96,18 @@ class Animal
     public function setDangerous(bool $dangerous): self
     {
         $this->dangerous = $dangerous;
+
+        return $this;
+    }
+
+    public function getFamily(): ?Family
+    {
+        return $this->family;
+    }
+
+    public function setFamily(?Family $family): self
+    {
+        $this->family = $family;
 
         return $this;
     }
