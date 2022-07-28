@@ -38,9 +38,13 @@ class Animal
     #[ORM\ManyToMany(targetEntity: Continent::class, mappedBy: 'animals')]
     private Collection $continents;
 
+    #[ORM\OneToMany(mappedBy: 'animal', targetEntity: Owner::class)]
+    private Collection $owners;
+
     public function __construct()
     {
         $this->continents = new ArrayCollection();
+        $this->owners = new ArrayCollection();
     }
 
 
@@ -144,6 +148,36 @@ class Animal
     {
         if ($this->continents->removeElement($continent)) {
             $continent->removeAnimal($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Owner>
+     */
+    public function getOwners(): Collection
+    {
+        return $this->owners;
+    }
+
+    public function addOwner(Owner $owner): self
+    {
+        if (!$this->owners->contains($owner)) {
+            $this->owners->add($owner);
+            $owner->setAnimal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOwner(Owner $owner): self
+    {
+        if ($this->owners->removeElement($owner)) {
+            // set the owning side to null (unless already changed)
+            if ($owner->getAnimal() === $this) {
+                $owner->setAnimal(null);
+            }
         }
 
         return $this;
