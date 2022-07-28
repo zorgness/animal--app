@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Continents{% endblock %}
+{% block header %}Continents List{% endblock %}
+
+{% block body %}
+    <div class="list-group m-3">
+    {% for continent in continents %}
+      <div class="border-bottom border-primary" >
+        <h2>{{ continent.label|title }}</h2>
+        <div class="d-flex justify-content-around flex-wrap ">
+          {% for animal in continent.animals %}
+          <div class="d-flex flex-column align-items-center justify-content-center">
+            <img src="{{ asset('images/animals/' ~ animal.image) }}" alt="{{ animal.name }}" class="avatar-large" >
+            <a href="{{ path("show_animal", {'id': animal.id}) }}"><h5 class="animals">{{ animal.name }}</h5></a>
+            <a href="{{ path("show_family", {'id': animal.family.id}) }}" class="btn btn-primary">{{ animal.family.label }}</a>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -7,16 +7,31 @@
     <div class="list-group m-3">
       <div class="border-bottom border-primary" >
         <p>{{ family.description|title }}</p>
-        <div class="d-flex justify-content-around flex-wrap">
-          {% for animal in family.animals %}
-          <div class="text-center">
-            <img src="{{ asset('images/animals/' ~ animal.image) }}" alt="{{ animal.name }}" >
-            <a href="{{ path("show_animal", {'id': animal.id}) }}"><h5 class="animals">{{ animal.name }}</h5></a>
-          </div>
+
+
+            <div class="d-flex justify-content-around flex-wrap">
+              {% for animal in family.animals %}
+                <div class="text-center">
+                  <img src="{{ asset('images/animals/' ~ animal.image) }}" alt="{{ animal.name }}" >
+                  <a href="{{ path("show_animal", {'id': animal.id}) }}"><h5 class="animals">{{ animal.name }}</h5></a>
+                </div>
+              </div>
+
+               <div >
+                  {% for continent in animal.continents %}
+                    <a href="{{ path("show_continent", {'id': continent.id}) }}" class="btn btn-secondary">{{ continent.label }}</a>
+                  {% endfor %}
+                </div>
+
+
+
 
           {% endfor %}
-        </div>
-      </div>
+              </div>
+          </div>
+
+
+
 
   </div>
 {% endblock %}
