@@ -20,6 +20,12 @@
                 <a href="{{ path("show_continent", {'id': continent.id}) }}" class="btn btn-secondary">{{ continent.label }}</a>
               {% endfor %}
             </div>
+
+            <div class="my-3">
+              {% for owner in animal.owners %}
+                <a href="" class="btn btn-info">{{ owner.person.name }}</a>
+              {% endfor %}
+            </div>
         </div>
 
 

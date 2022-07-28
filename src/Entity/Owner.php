@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Person;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\OwnerRepository;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;

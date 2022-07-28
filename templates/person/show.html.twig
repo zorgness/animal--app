@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Families{% endblock %}
+{% block header %}{{ person.name|title }}{% endblock %}
+
+{% block body %}
+    <div class="list-group m-3">
+      <div class="border-bottom border-primary" >
+
+
+
+            <div class="d-flex justify-content-around flex-wrap">
+              {% for owner in person.owners %}
+                <div class="text-center">
+                  <img src="{{ asset('images/animals/' ~ owner.animal.image) }}" alt="{{ owner.animal.name }}" >
+                  <a href="{{ path("show_animal", {'id': owner.animal.id}) }}"><h5 class="animals">{{ owner.animal.name }}</h5></a>
+                  <p>number: {{ owner.nb }} </p>
+                </div>
+              </div>
+
+          {% endfor %}
+              </div>
+          </div>
+
+
+
+
+  </div>
+{% endblock %}
