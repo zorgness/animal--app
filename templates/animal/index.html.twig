@@ -14,7 +14,7 @@
         <div class="col-auto">
             <a href="{{ path("show_animal", {'id': animal.id}) }}"><h2 class="animals">{{ animal.name }}</h2></a>
             <p>{{ animal.description }}</p>
-            <a href="{{ path("show_animal", {'id': animal.id}) }}" class="btn btn-primary">{{ animal.family.label }}</a>
+            <a href="{{ path("show_family", {'id': animal.family.id}) }}" class="btn btn-primary">{{ animal.family.label }}</a>
         </div>
 
     </div>
