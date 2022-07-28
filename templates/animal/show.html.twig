@@ -16,6 +16,7 @@
             <p>{{ animal.description }}</p>
             <p>{{ animal.weight }} kilos</p>
             {{animal.dangerous ? '<p style="color: red;">dangerous</p>' : '<p style="color: green;">not dangerous</p>'}}
+            <a href="{{ path("show_family", {'id': animal.family.id}) }}" class="btn btn-primary">{{ animal.family.label }}</a>
         </div>
 
     </div>

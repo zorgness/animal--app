@@ -19,4 +19,12 @@ class FamilyController extends AbstractController
             'families' => $families
         ]);
     }
+    #[Route('/families/{id}', name: 'show_family')]
+    public function show(Family $family): Response
+    {
+        return $this->render('family/show.html.twig', [
+            'controller_name' => 'FamilyController',
+            'family' => $family
+        ]);
+    }
 }
