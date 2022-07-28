@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Home{% endblock %}
-{% block header %}Animals List{% endblock %}
+{% block header %}This is the {{animal.name|title}}{% endblock %}
 
 {% block body %}
 
-  {% for animal in animals %}
+
     <div class="row align-items center">
 
         <div class="col-2 text-center ">
@@ -14,14 +14,10 @@
         <div class="col-auto">
             <a href="{{ path("show_animal", {'id': animal.id}) }}"><h2 class="animals">{{ animal.name }}</h2></a>
             <p>{{ animal.description }}</p>
+            <p>{{ animal.weight }} kilos</p>
+            {{animal.dangerous ? '<p style="color: red;">dangerous</p>' : '<p style="color: green;">not dangerous</p>'}}
         </div>
 
     </div>
-
-
-  {% endfor %}
-
-
-
 
 {% endblock %}

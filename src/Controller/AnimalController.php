@@ -23,4 +23,22 @@ class AnimalController extends AbstractController
             'animals' => $animals
         ]);
     }
+    // #[Route('/animals/{id}', name: 'show_animal')]
+    // public function show(AnimalRepository $repository, $id): Response
+    // {
+    //     $animal = $repository->find($id);
+    //     return $this->render('animal/show.html.twig', [
+    //         'controller_name' => 'AnimalController',
+    //         'animal' => $animal
+    //     ]);
+    // }
+    #[Route('/animals/{id}', name: 'show_animal')]
+    public function show(Animal $animal): Response
+    {
+
+        return $this->render('animal/show.html.twig', [
+            'controller_name' => 'AnimalController',
+            'animal' => $animal
+        ]);
+    }
 }
