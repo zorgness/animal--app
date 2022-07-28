@@ -2,11 +2,13 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Owner;
 use App\Entity\Animal;
 use App\Entity\Family;
+use App\Entity\Person;
 use App\Entity\Continent;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AnimalFixtures extends Fixture
 {
@@ -14,6 +16,18 @@ class AnimalFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
+        $p1 = new Person();
+        $p1->setName('john');
+          $manager->persist($p1);
+
+        $p2 = new Person();
+        $p2->setName('bob');
+          $manager->persist($p2);
+
+        $p3 = new Person();
+        $p3->setName('paul');
+          $manager->persist($p3);
+
         $c1 = new Continent();
         $c1->setLabel('europe');
           $manager->persist($c1);
@@ -113,6 +127,25 @@ class AnimalFixtures extends Fixture
            ->addContinent($c3)
            ->addContinent($c4);
         $manager->persist($a5);
+
+
+        $o1 = new Owner();
+        $o1->setPerson($p1)
+            ->setAnimal($a1)
+            ->setNb(30);
+        $manager->persist($o1);
+
+        $o2 = new Owner();
+        $o2->setPerson($p1)
+            ->setAnimal($a2)
+            ->setNb(20);
+        $manager->persist($o2);
+
+        $o3 = new Owner();
+        $o3->setPerson($p3)
+            ->setAnimal($a3)
+            ->setNb(24);
+        $manager->persist($o3);
 
         $manager->flush();
     }
