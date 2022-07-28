@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnimalRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -32,6 +34,14 @@ class Animal
     #[ORM\ManyToOne(inversedBy: 'animals')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Family $family = null;
+
+    #[ORM\ManyToMany(targetEntity: Continent::class, mappedBy: 'animals')]
+    private Collection $continents;
+
+    public function __construct()
+    {
+        $this->continents = new ArrayCollection();
+    }
 
 
 
@@ -108,6 +118,33 @@ class Animal
     public function setFamily(?Family $family): self
     {
         $this->family = $family;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Continent>
+     */
+    public function getContinents(): Collection
+    {
+        return $this->continents;
+    }
+
+    public function addContinent(Continent $continent): self
+    {
+        if (!$this->continents->contains($continent)) {
+            $this->continents->add($continent);
+            $continent->addAnimal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContinent(Continent $continent): self
+    {
+        if ($this->continents->removeElement($continent)) {
+            $continent->removeAnimal($this);
+        }
 
         return $this;
     }
