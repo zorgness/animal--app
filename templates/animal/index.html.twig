@@ -5,7 +5,23 @@
 
 {% block body %}
 
+  {% for animal in animals %}
+    <div class="row align-items center">
 
+        <div class="col-2 text-center ">
+          <img src="{{ asset('images/animals/' ~ animal.image) }}" alt="{{ animal.name }}">
+        </div>
+        <div class="col-auto">
+            <h2 class="animals">{{ animal.name }}</h2>
+            <p>{{ animal.description }}</p>
+        </div>
+
+    </div>
+
+
+
+
+  {% endfor %}
 
 
 
