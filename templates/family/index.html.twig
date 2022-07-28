@@ -9,6 +9,15 @@
       <div class="border-bottom border-primary" >
         <h2>{{ family.label|title }}</h2>
         <p>{{ family.description|title }}</p>
+        <div class="d-flex justify-content-around">
+          {% for animal in family.animals %}
+          <div>
+            <img src="{{ asset('images/animals/' ~ animal.image) }}" alt="{{ animal.name }}">
+            <p>{{ animal.name }}</p>
+          </div>
+
+          {% endfor %}
+        </div>
       </div>
     {% endfor %}
   </div>
